@@ -13,9 +13,20 @@ export default function Feedback() {
   const addFeedback = e => {
     const targetName = e.target.dataset.name.toLowerCase();
 
-    if (targetName === 'good') setGood(pre => pre + 1);
-    if (targetName === 'neutral') setNeutral(pre => pre + 1);
-    if (targetName === 'bad') setBad(pre => pre + 1);
+    switch (targetName) {
+      case 'good':
+        setGood(pre => pre + 1);
+        break;
+      case 'neutral':
+        setNeutral(pre => pre + 1);
+        break;
+      case 'bad':
+        setBad(pre => pre + 1);
+
+      // eslint-disable-next-line no-fallthrough
+      default:
+        return;
+    }
   };
 
   function countTotalFeedback() {
